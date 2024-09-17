@@ -1,0 +1,940 @@
+/* Estilos Generales */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.share-buttons button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.blue-button, button#addUserButton {
+    background-color: #2196F3;
+}
+
+.blue-button:hover, button#addUserButton:hover {
+    background-color: #0b7dda;
+}
+
+.file-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.file-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.file-button:hover {
+    background-color: #45a049;
+}
+
+.file-button .material-icons {
+    margin-right: 5px;
+}
+
+.file-list {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.file-item {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.file-item:hover {
+    background-color: #f1f1f1;
+}
+
+.file-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f0f0f0; /* Fondo gris claro */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1000;
+    min-width: 200px; /* Asegura un ancho mínimo */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Añade una sombra suave */
+}
+
+.file-item {
+    cursor: pointer;
+    padding: 5px 10px;
+    color: #333; /* Color de texto oscuro */
+    transition: background-color 0.3s;
+}
+
+.file-item:hover {
+    background-color: #e0e0e0; /* Color de fondo más oscuro al pasar el mouse */
+}
+
+.list-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-arrow {
+    cursor: pointer;
+    font-size: 1.5em;
+    color: white;
+}
+
+
+/* Estilos para los botones de edición */
+button#editButton, button#saveButton, button#editListButton {
+    background-color: #ff9800; /* Color naranja */
+}
+
+button#editButton:hover, button#saveButton:hover, button#editListButton:hover {
+    background-color: #e68900; /* Color naranja más oscuro al pasar el ratón */
+}
+
+
+/* Estilo para el botón de subir archivo */
+.upload-button {
+    background-color: #2196F3; /* Color azul */
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+    background-color: #0b7dda; /* Color más oscuro al pasar el ratón */
+}
+
+
+/* Estilo para el selector de listas desplegable */
+.styled-select {
+    font-size: 2em; /* Igual al tamaño de las letras anteriores */
+    background-color: transparent; /* Fondo transparente para la apariencia original */
+    border: none;
+    color: white; /* Color del texto para el estado normal */
+    text-align: center;
+    text-align-last: center; /* Centrado del texto dentro del select */
+    padding: 5px;
+    -webkit-appearance: none; /* Remueve el estilo predeterminado del navegador */
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+/* Estilo para las opciones del selector desplegable */
+.styled-select option {
+    background-color: #4CAF50; /* Fondo verde para las opciones desplegables */
+    color: black; /* Texto negro para las opciones */
+}
+
+/* Estilo de la flecha del selector */
+.styled-select::-ms-expand {
+    display: none;
+}
+
+/* Ajustar la apariencia del selector en dispositivos móviles */
+@media (max-width: 768px) {
+    .styled-select {
+        font-size: 1.5em; /* Ajusta el tamaño para dispositivos móviles */
+    }
+}
+
+
+.user-card .user-body {
+    display: none;
+}
+
+.user-card.expanded .user-body {
+    display: block;
+}
+
+
+/* Contenedor de botones de acción en el header */
+.action-buttons-container {
+    display: flex;
+    align-items: center;
+}
+
+.action-buttons-container button {
+    margin-left: 5px;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Ocultar los botones de edición por defecto */
+.edit-mode-only {
+    display: none;
+}
+
+/* Mostrar los botones en modo edición */
+.is-edit-mode .edit-mode-only {
+    display: inline-block;
+}
+
+/* Estilos para botones deshabilitados */
+.move-up-button:disabled,
+.move-down-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* Alinear el header para que el nombre y los botones estén en extremos opuestos */
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilos para el nombre y el contenedor de los botones */
+.name-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Ajustar margen del editIcon si es necesario */
+.edit-icon {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+/* Estilos para el botón de expansión */
+.expand-button {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
+/* Contenedor de botones de movimiento */
+.move-buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.move-up-button,
+.move-down-button {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    display: none; /* Ocultos por defecto; se muestran en modo edición */
+}
+
+
+/* Mostrar botones en modo edición */
+.is-edit-mode .move-up-button,
+.is-edit-mode .move-down-button,
+.is-edit-mode .edit-mode-only {
+    display: inline-block;
+}
+
+
+.move-buttons {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.move-up-button,
+.move-down-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.move-up-button:hover,
+.move-down-button:hover {
+    background-color: #45a049;
+}
+
+.user-card.dragging {
+    opacity: 0.5;
+}
+
+.user-card {
+    position: relative;
+}
+
+.user-card:fullscreen {
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.user-card:fullscreen .user-body {
+    display: block;
+}
+
+.user-card:fullscreen .user-header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1000;
+}
+
+.expand-button {
+    display: inline-block !important; /* Sobrescribe cualquier estilo que pueda ocultarlo */
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 5px;
+}
+
+@media (max-width: 768px) {
+    .user-card:fullscreen {
+        padding: 10px;
+    }
+}
+
+.edit-mode-only {
+    display: none;
+}
+
+.user-card .task-container {
+    position: relative;
+    padding-bottom: 40px; /* Espacio para los botones */
+}
+
+.task-actions {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.task-actions button {
+    flex: 1 1 auto;
+    min-width: 120px;
+    padding: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.user-card .user-header {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.user-card.completed .user-header {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+
+.user-card.error .user-header {
+    background-color: #F44336; /* Rojo */
+    color: white;
+}
+
+.user-card.in-progress .user-header {
+    background-color: #FFC107; /* Amarillo */
+    color: black;
+}
+
+
+.comment-indicator {
+    margin-left: 10px;
+    font-size: 1.2em;
+    cursor: help;
+}
+
+.comment-indicator:hover {
+    transform: scale(1.2);
+}
+
+/* Estilos para los checkboxes de correcto y error */
+/* Estilos para los checkboxes de correcto y error */
+.correct-checkbox, .error-checkbox {
+    margin-right: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px; /* Tamaño fijo */
+    height: 20px; /* Tamaño fijo */
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0; /* Evita que el tamaño cambie */
+}
+
+.correct-checkbox {
+    border-color: #4CAF50;
+}
+
+.error-checkbox {
+    border-color: #F44336;
+}
+
+/* Otros estilos adicionales para alinear correctamente el texto con los checkboxes */
+.step-content {
+    display: flex;
+    align-items: center;
+}
+
+.step-text {
+    margin-left: 8px; /* Espacio entre el checkbox y el texto */
+    flex: 1; /* Permite que el texto ocupe el resto del espacio */
+}
+
+
+.correct-checkbox:checked, .error-checkbox:checked {
+    background-color: #fff;
+}
+
+.correct-checkbox:checked::before, .error-checkbox:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.correct-checkbox:checked::before {
+    background-color: #4CAF50;
+}
+
+.error-checkbox:checked::before {
+    background-color: #F44336;
+}
+
+label {
+    margin-right: 10px;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.task-container {
+    margin-bottom: 20px;
+}
+
+.pasos-list {
+    padding-left: 20px;
+}
+
+.pasos-list li {
+    margin-bottom: 10px;
+}
+
+.step-content {
+    display: flex;
+    align-items: center;
+}
+
+.step-checkbox {
+    margin-right: 10px;
+}
+
+.important {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.resultado {
+    margin-top: 20px;
+    font-style: italic;
+}
+
+.comment-section {
+    margin-top: 20px;
+}
+
+.print-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .print-content, .print-content * {
+        visibility: visible;
+    }
+    .print-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0px 10px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+/* Estilo para separar los botones del nobre de la lista de usuarios*/
+.buttons-container {
+    margin-top: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+    color: white;
+}
+
+button#addUserButton {
+    background-color: #2196F3;
+}
+
+button#addUserButton:hover {
+    background-color: #0b7dda;
+}
+
+button#editButton, button#saveButton {
+    background-color: #ff9800;
+}
+
+button#editButton:hover, button#saveButton:hover {
+    background-color: #e68900;
+}
+
+/* Contenedor de Usuarios */
+.users-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Tarjeta de Usuario */
+.user-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    width: 90%;
+    max-width: 800px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s;
+    position: relative;
+}
+
+.user-card:hover {
+    transform: translateY(-5px);
+}
+
+.user-header {
+    background-color: #f2f2f2;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-header .delete-user-button {
+    background-color: transparent;
+    color: #f44336;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.user-card:hover .delete-user-button {
+    opacity: 1;
+}
+
+.user-body {
+    padding: 15px;
+    display: none; /* Oculto por defecto */
+    flex-grow: 1;
+    overflow-y: auto; /* Permite desplazamiento si el contenido es muy largo */
+}
+
+.user-card.expanded .user-body {
+    display: block;
+}
+
+.user-body .task-container {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.task-container h3 {
+    margin: 0;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+}
+
+.task-container.combined::before {
+    content: "🔗 ";
+    margin-right: 5px;
+    font-size: 1em;
+}
+
+/* Nombres de Usuarios Compartidos */
+.shared-users {
+    margin-left: 10px;
+    font-size: 0.9em;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.shared-users .user-names {
+    margin-right: 10px;
+}
+
+.shared-users .add-user-button {
+    background-color: transparent;
+    border: none;
+    color: #2196F3;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.shared-users .add-user-button:hover {
+    color: #0b7dda;
+}
+
+.pasos-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.pasos-list li {
+    margin-bottom: 8px;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pasos-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.pasos-list li .step-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.pasos-list li .step-content input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.pasos-list li .step-content .step-text.important {
+    font-weight: bold;
+}
+
+.pasos-list li .delete-step-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 3px 7px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    display: none;
+}
+
+.pasos-list li:hover .delete-step-button {
+    display: inline-block;
+}
+
+/* Estados de la Tarjeta */
+.completed {
+    border-left: 5px solid #4CAF50;
+}
+
+.failed {
+    border-left: 5px solid #f44336;
+}
+
+/* Comentarios */
+.comment-section {
+    margin-top: 10px;
+}
+
+.comment-section textarea {
+    width: 100%;
+    height: 60px;
+    resize: vertical;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Acciones */
+.actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-step-button, .remove-step {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-step-button:hover, .remove-step:hover {
+    background-color: #0b7dda;
+}
+
+.complete-button {
+    background-color: #4CAF50;
+}
+
+.complete-button:hover {
+    background-color: #45a049;
+}
+
+.uncomplete-button {
+    background-color: #f44336;
+}
+
+.uncomplete-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Modal Estilos */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#addPasoButton {
+    background-color: #4CAF50;
+    margin-top: 10px;
+}
+
+#addPasoButton:hover {
+    background-color: #45a049;
+}
+
+.paso {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.paso input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.paso label {
+    margin-right: 10px;
+}
+
+.paso .remove-step {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.paso .remove-step:hover {
+    background-color: #d32f2f;
+}
+
+#addNewUserLink {
+    color: #2196F3;
+    text-decoration: none;
+}
+
+#addNewUserLink:hover {
+    text-decoration: underline;
+}
+
+#newUserContainer label,
+#newUserContainer input {
+    margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+    .comment-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .comment-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .share-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .share-buttons button {
+        flex: 1;
+        margin: 0 5px;
+    }
+}

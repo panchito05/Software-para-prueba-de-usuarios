@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Tareas</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>
+            <div class="list-header">
+                <div class="file-dropdown">
+                    <button class="file-button">
+                        <span class="material-icons">folder_open</span>
+                        Archivos
+                    </button>
+                    <div class="file-list" style="display: none;">
+                        <!-- Los archivos se listarán aquí -->
+                    </div>
+                </div>
+                <select id="listSelector" class="styled-select">
+                    <!-- Las opciones de la lista se generarán dinámicamente con JavaScript -->
+                </select>
+            </div>
+        </h1>
+        <div class="buttons-container">
+            <button id="addUserButton">Añadir Usuario</button>
+            <button id="editButton">Modo Edición</button>
+            <button id="saveButton" style="display:none;">Guardar Cambios</button>
+            <button id="duplicateListButton">Duplicar Lista</button>
+            <button id="uploadFileButton" class="upload-button">Subir Archivo</button>
+            <input type="file" id="fileInput" style="display: none;" />
+            <button id="editListButton">Editar Nombre</button>
+            <button id="deleteListButton">Eliminar Lista</button>
+            <button id="exportButton" class="blue-button">Exportar Datos</button>
+            <button id="importButton">Importar Datos</button>
+            <input type="file" id="importInput" style="display: none;" accept=".json">
+        </div>
+    </header>
+
+    <main>
+        <div id="usersContainer" class="users-container">
+            <!-- Las tarjetas de usuarios se generarán dinámicamente con JavaScript -->
+        </div>
+
+        <div id="fileListContainer">
+            <!-- La lista de archivos se generará dinámicamente aquí -->
+        </div>
+    </main>
+
+    <!-- Modal para Añadir Usuario/Tarea -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Añadir Nueva Tarea</h2>
+            <form id="addUserForm">
+                <div id="existingUserContainer">
+                    <label for="usuarios">Seleccionar Usuarios Existentes (opcional):</label>
+                    <select id="usuarios" name="usuarios[]" multiple>
+                        <!-- Opciones se generarán dinámicamente con JavaScript -->
+                    </select>
+                </div>
+                <p>O bien, <a href="#" id="addNewUserLink">añadir un nuevo usuario</a>.</p>
+
+                <div id="newUserContainer" style="display:none;">
+                    <label for="nuevoUsuario">Nombre de Usuario:</label>
+                    <input type="text" id="nuevoUsuario" name="nuevoUsuario">
+                </div>
+
+                <label for="tarea">Tarea de Verificación:</label>
+                <input type="text" id="tarea" name="tarea" required>
+
+                <label for="resultado">Resultado Esperado:</label>
+                <textarea id="resultado" name="resultado" rows="3" required></textarea>
+
+                <div id="pasosContainer">
+                    <h3>Pasos Detallados para Verificar</h3>
+                    <div class="paso">
+                        <input type="text" name="pasos[]" placeholder="Descripción del paso" required>
+                        <label>
+                            <input type="checkbox" name="importante[]"> Importante
+                        </label>
+                        <button type="button" class="remove-step">Eliminar</button>
+                    </div>
+                </div>
+                <button type="button" id="addPasoButton">Añadir Paso</button>
+                <button type="submit">Guardar Tarea</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
